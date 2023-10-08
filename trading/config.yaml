@@ -1,0 +1,7 @@
+APP_KEY: "*검열됨*" # 발급받은 APP KEY 입력
+APP_SECRET: "*검열됨*" # 발급받은 APP_SECRET 입력
+
+CANO: "*검열됨*" # 본인 계좌번호 앞 8자리
+ACNT_PRDT_CD: "*검열됨*" # 본인 계좌번호 뒤 2자리
+
+URL_BASE: "https://openapi.koreainvestment.com:9443"
