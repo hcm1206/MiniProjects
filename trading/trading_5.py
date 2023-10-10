@@ -1,19 +1,22 @@
-# config 지워라
+# 보유 주식 확인
 
 import yaml
 import requests
 import json
 from datetime import datetime
 
+# API 키와 계좌 정보 등등 설정값을 config.yaml 파일에서 로드
 with open('config.yaml') as f:
     cfg = yaml.load(f, Loader=yaml.FullLoader)
 
+# 설정값 불러와 변수로 저장
 APP_KEY = cfg['APP_KEY']
 APP_SECRET = cfg['APP_SECRET']
 CANO = cfg['CANO']
 ACNT_PRDT_CD = cfg['ACNT_PRDT_CD']
 URL_BASE = cfg['URL_BASE']
 
+# 액세스 토큰 발급하는 함수
 def get_access_token():
     PATH = "oauth2/tokenP"
     URL = f"{URL_BASE}/{PATH}"
@@ -27,6 +30,7 @@ def get_access_token():
     ACCESS_TOKEN = res.json()['access_token']
     return ACCESS_TOKEN
 
+# 주식 잔고 정보 출력하는 함수
 def get_stock_balance():
     PATH = "uapi/domestic-stock/v1/trading/inquire-balance"
     URL = f"{URL_BASE}/{PATH}"
@@ -61,8 +65,11 @@ def get_stock_balance():
         print(f"\t매입금액: {stock['pchs_amt']}원")
         print(f"\t평가손익금액: {stock['evlu_pfls_amt']}원\n")
 
+# 액세스 토큰 발급
 ACCESS_TOKEN = get_access_token()
 print(f"접근 토큰: {ACCESS_TOKEN}")
 
+# 현재 시간 출력
 print(f"현재 시간: {datetime.now()}")
+# 현재 주식 잔고 확인
 get_stock_balance()
