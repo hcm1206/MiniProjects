@@ -1,0 +1,77 @@
+/* 번역 사이트의 CSS 코드 */
+
+/* 전체 요소의 기본 마진 제거 */
+body {
+    margin: 0;
+}
+
+/* 헤더의 패딩 설정 및 아래 구분선 설정 */
+#header {
+    padding: 20px;
+    border-bottom: 1px solid rgba(0,0,0,.1);
+}
+
+/* 원본 문장 입력 부분과 번역된 문장 출력 부분의 마진과 구분선 설정 */
+#source, #result {
+    margin: 20px;
+    border: 1px solid rgba(0,0,0,.1);
+}
+
+/* 언어 표시 부분을 좌우로 정렬시키고 패딩과 아래 구분선 설정 */
+#lang {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+    border-bottom: 1px solid rgba(0,0,0,.05);
+}
+
+/* 원본 문장 입력 부분의 영역 크기와 패딩, 폰트 크기를 설정하고 경계선 제거  */
+#trans_src {
+    width: 90%;
+    height: 250px;
+    border: none;
+    padding: 20px;
+    font-size: 30px;
+    resize: none;
+}
+
+/* 원본 문장 입력 부분에 입력 시 경계선 제거*/
+#trans_src:focus {
+    outline: none;
+}
+
+/* 원본 문장 입력 부분의 설명문을 굵게 표시 */
+#trans_src::placeholder {
+    font-weight: bold;
+}
+
+/* 번역 버튼 영역의 위쪽 구분선을 설정하고 요소(버튼)를 우측으로 정렬 */
+#trans_btn {
+    border-top: 1px solid rgba(0,0,0,.05);
+    text-align: right;
+}
+
+/* 번역 버튼의 크기와 글자 및 배경 색, 외곽선과 폰트 등의 스타일 설정 */
+#trans_btn button {
+    height: 60px;
+    width: 120px;
+    color: white;
+    background-color: #1eda69;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* 번역본 출력 부분의 크기와 폰트 크기, 패딩 설정 */
+#trans_dst {
+    height: 250px;
+    font-size: 30px;
+    padding: 20px;
+}
+
+/* 번역본 출력 부분의 아래 여백 공간의 높이와 위쪽 구분선 설정 */
+#trans_dst1 {
+    height: 60px;
+    border-top: 1px solid rgba(0,0,0,.05);
+}

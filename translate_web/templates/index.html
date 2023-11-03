@@ -1,0 +1,73 @@
+<!-- 번역 사이트의 HTML 코드 -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE-edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>심파고</title>
+    <!-- jQuery 사용 -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+</head>
+<body>
+    <!-- 헤더로 로고 이미지 사용 -->
+    <div id="header">
+        <img src="{{url_for('static', filename='img/simpago_icon.png')}}" width="200" height="50">
+    </div>
+
+    <!-- 번역할 문장 입력 부분 -->
+    <div id="source">
+        <!-- 설정된 언어 출력(일단은 장식용) -->
+        <div id="lang">
+            <div>한국어 &#8744;</div>
+            <div>영어 &#8744;</div>
+        </div>
+        <!-- 사용자에게 문장 입력 받는 부분 -->
+        <textarea name="trans_src" id="trans_src" placeholder="번역할 내용을 입력하세요."></textarea>
+        <!-- 번역 실행 버튼 -->
+        <div id="trans_btn">
+            <button onclick="trans()">번역하기</button>
+        </div>
+
+    </div>
+
+    <!-- 번역된 결과 출력 부분 -->
+    <div id="result">
+        <!-- 번역된 결과 실제 출력 부분 -->
+        <div id="trans_dst">
+
+        </div>
+        <!-- 번역 결과 아래 여백 부분 -->
+        <div id="trans_dst1">
+
+        </div>
+    </div>
+
+    <script>
+        // 입력된 문장을 번역하는 함수
+        function trans(){
+            // 사용자 입력 부분에서 입력된 문장 값을 로드
+            var trans_src = $('#trans_src').val();
+            // 원본 문장을 json 형식으로 변환하기 위해 처리
+            var postdata = {
+                'trans_src': trans_src,
+            }
+            // ajax를 이용하여 원본 문장을 JSON화하여 /translate 주소에 POST 요청
+            $.ajax({
+                type: 'POST',
+                url: "{{ url_for('translate') }}",
+                data: JSON.stringify(postdata),
+                dataType: 'JSON',
+                contentType: 'application/json',
+                // 성공 시 결과를 받아와 HTML 결과 출력 부분에 결과 내용을 입력하여 출력
+                success: function(report){
+                    $('#trans_dst').text(report.result);
+                }
+            })
+        }
+
+    </script>
+</body>
+</html>
